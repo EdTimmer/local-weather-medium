@@ -14,7 +14,7 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/3.6.3/workbox-sw.js");
 
 importScripts(
-  "/EdTimmer/local-weather-medium/precache-manifest.6b33bc663ef361f292dae35f495fc99d.js"
+  "/local-weather-medium/precache-manifest.c98dc7185ed081c40285f00c0bc66cdd.js"
 );
 
 workbox.clientsClaim();
@@ -28,7 +28,7 @@ self.__precacheManifest = [].concat(self.__precacheManifest || []);
 workbox.precaching.suppressWarnings();
 workbox.precaching.precacheAndRoute(self.__precacheManifest, {});
 
-workbox.routing.registerNavigationRoute("/EdTimmer/local-weather-medium/index.html", {
+workbox.routing.registerNavigationRoute("/local-weather-medium/index.html", {
   
   blacklist: [/^\/_/,/\/[^\/]+\.[^\/]+$/],
 });
