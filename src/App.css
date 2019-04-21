@@ -1,33 +1,52 @@
 .App {
-  text-align: center;
-}
-
-.App-logo {
-  animation: App-logo-spin infinite 20s linear;
-  height: 40vmin;
-  pointer-events: none;
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
   display: flex;
   flex-direction: column;
-  align-items: center;
+  text-align: center;
+  /* justify-content: center; */
+  background-image: url('./images/resort.jpg');
+  /* background-image: linear-gradient(to bottom right, blue, yellow); */
+  height: 100vh;
+}
+
+
+.header-box {
+  display: flex;
+  text-align: center;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 3rem;
+  width: 60rem;
+  height: 6rem;
+  background-color: blue;
+  border: 2px solid orange;
 }
 
-.App-link {
-  color: #61dafb;
+.header {
+  font-family: 'Bonbon', sans-serif;
+  font-size: 5rem;
+  color: orange;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.weather {
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  justify-content: center;
+}
+
+.weather-item {
+  font-size: 2rem;
+  margin: 1rem 0;
+  color: black;
+}
+
+.weather-icon {
+  max-width: 50px;
+}
+
+.sun-icon {
+  width: 24px;
+  height: 24px;
+  margin: 0 1rem;
 }
