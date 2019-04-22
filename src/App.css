@@ -1,3 +1,15 @@
+@-ms-viewport {
+  width: device-width;
+}
+
+html {
+  height: 100%;
+}
+
+body {
+  height: 100%;
+}
+
 .App {
   display: flex;
   flex-direction: column;
