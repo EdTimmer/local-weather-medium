@@ -20,9 +20,6 @@ class App extends Component {
   }
 
   componentDidMount() {
-
-    if (navigator.geolocation) {
-
       //get coordinates
       this.getPosition()
       //then use coordinates to get weather data
@@ -33,30 +30,30 @@ class App extends Component {
         this.setState({ errorMessage: err.message });
       });
 
-      //this part is not necessary, it is here to automatically update our weather data avery 5 minutes (300000 milliseconds)
+      //this part is not necessary, it is here to automatically update our weather data every 5 minutes (300000 milliseconds)
       this.timerID = setInterval(
-        () => this.tick(),
+        () => this.rerun(),
         300000
       );
-
-    }
-    else {
-      alert("Geolocation not available")
-    }
   }
 
   //function to get coordinates
-  getPosition = (options) => {
-    return new Promise(function (resolve, reject) {
-      navigator.geolocation.getCurrentPosition(resolve, reject, options);
-    });
+  getPosition = () => {
+    if (navigator.geolocation) {
+      return new Promise(function (resolve, reject) {
+        navigator.geolocation.getCurrentPosition(resolve, reject);
+      });
+    }
+    else {
+      alert("Geolocation not available");      
+    }
   }
   
   //function to get weather if you have the coordinates
   getWeather = async (latitude, longitude) => { 
     const api_call = await fetch(`//api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&appid=${API_KEY}&units=metric`);
     const data = await api_call.json();
-    console.log(data)
+    
     this.setState({
       city: data.name,
       country: data.sys.country,
@@ -68,10 +65,12 @@ class App extends Component {
       sunrise: moment.unix(data.sys.sunrise).format("hh:mm a"),
       sunset: moment.unix(data.sys.sunset).format("hh:mm a"),
     })
+
+    console.log('data is: ', data)
   }
 
   //function to re-run getting of coordinates followed by a re-run of fetching of weather data
-  tick = () => {
+  rerun = () => {
     this.getPosition()
     .then((position) => {      
       this.getWeather(position.coords.latitude, position.coords.longitude)
