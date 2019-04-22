@@ -33,12 +33,9 @@ class App extends Component {
       });
 
       //this part is not necessary, it is here to automatically update our weather data every 5 minutes (300000 milliseconds)
-      // this.timerID = setInterval(
-      //   () => this.refresh(),
-      //   300000
-      // );
       this.timerID = setInterval(        
-        () => this.getWeather(this.state.lat, this.state.lon),
+        () => 
+        this.getWeather(this.state.lat, this.state.lon),
         60000
       );
   }
@@ -77,17 +74,6 @@ class App extends Component {
 
     console.log('data is: ', data)
   }
-
-  //function to re-run getting of coordinates followed by a re-run of fetching of weather data
-  // refresh = () => {
-    // this.getPosition()
-    // .then((position) => {      
-      // this.getWeather(position.coords.latitude, position.coords.longitude)
-    // })
-    // .catch((err) => {
-    //   this.setState({ errorMessage: err.message });
-    // });
-  // }
 
   //shut down auto updating if you will close this page and move on to another page in your app
   componentWillUnmount() {
