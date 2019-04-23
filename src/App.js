@@ -15,42 +15,15 @@ class App extends Component {
     errorMessage: undefined,
   }
 
-  componentDidMount() {
-      //get coordinates
-      this.getPosition()
-      //use coordinates to get weather data
-      .then((position) => {      
-        this.getWeather(position.coords.latitude, position.coords.longitude)
-      })
-      .catch((err) => {
-        this.setState({ errorMessage: err.message });
-      });
-
-      //this part is not necessary, it is here to automatically update our weather data every 10 minutes (600000 milliseconds)
-      this.timerID = setInterval(        
-        () => 
-        this.getWeather(this.state.lat, this.state.lon),
-        60000
-      );
-  }
-
-  //function to get coordinates
   getPosition = () => {
-    if (navigator.geolocation) {
-      return new Promise(function (resolve, reject) {
-        navigator.geolocation.getCurrentPosition(resolve, reject);
-      });
-    }
-    else {
-      alert("Geolocation not available");      
-    }
+    return new Promise(function (resolve, reject) {
+      navigator.geolocation.getCurrentPosition(resolve, reject);
+    });    
   }
   
-  //function to get weather if you have the coordinates
   getWeather = async (latitude, longitude) => { 
     const api_call = await fetch(`//api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&appid=${process.env.REACT_APP_WEATHER_API_KEY}&units=metric`);
-    const data = await api_call.json();
-    
+    const data = await api_call.json();    
     this.setState({
       lat: latitude,
       lon: longitude,
@@ -61,18 +34,30 @@ class App extends Component {
       sunrise: moment.unix(data.sys.sunrise).format("hh:mm a"),
       sunset: moment.unix(data.sys.sunset).format("hh:mm a"),
     })
-
   }
 
-  //shut down auto updating if you will close this page and move on to another page in your app
+  componentDidMount() {
+    this.getPosition()
+    .then((position) => {      
+      this.getWeather(position.coords.latitude, position.coords.longitude)
+    })
+    .catch((err) => {
+      this.setState({ errorMessage: err.message });
+    });
+
+    this.timerID = setInterval(        
+      () => 
+      this.getWeather(this.state.lat, this.state.lon),
+      60000
+    );
+  }
+
   componentWillUnmount() {
     clearInterval(this.timerID);
   }
 
-  render() {
-    
+  render() {    
     const { city, temperatureC, temperatureF, icon, sunrise, sunset} = this.state;
-
     if (city) {
       return (
         <div className="App">  
