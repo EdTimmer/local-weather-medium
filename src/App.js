@@ -80,9 +80,7 @@ class App extends Component {
           <div className="weather-box">
             <div className="weather-item">{city}</div>  
     
-            <div className="weather-item">{temperatureC} &deg;C</div>
-    
-            <div className="weather-item">{temperatureF} &deg;F</div>
+            <div className="weather-item">{temperatureC} &deg;C <span className="slash">/</span> {temperatureF} &deg;F</div>            
     
             <div>
               <img className="weather-icon" src={`http://openweathermap.org/img/w/${icon}.png`} alt="weather icon"/>
