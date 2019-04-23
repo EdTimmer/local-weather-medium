@@ -18,7 +18,7 @@ class App extends Component {
   componentDidMount() {
       //get coordinates
       this.getPosition()
-      //then use coordinates to get weather data
+      //use coordinates to get weather data
       .then((position) => {      
         this.getWeather(position.coords.latitude, position.coords.longitude)
       })
@@ -26,7 +26,7 @@ class App extends Component {
         this.setState({ errorMessage: err.message });
       });
 
-      //this part is not necessary, it is here to automatically update our weather data every 5 minutes (300000 milliseconds)
+      //this part is not necessary, it is here to automatically update our weather data every 10 minutes (600000 milliseconds)
       this.timerID = setInterval(        
         () => 
         this.getWeather(this.state.lat, this.state.lon),
@@ -75,28 +75,20 @@ class App extends Component {
 
     if (city) {
       return (
-        <div className="App">
-  
+        <div className="App">  
           <div className="weather-box">
-            <div className="weather-item">{city}</div>  
-    
-            <div className="weather-item">{temperatureC} &deg;C <span className="slash">/</span> {temperatureF} &deg;F</div>            
-    
+            <div className="weather-item">{city}</div>      
+            <div className="weather-item">{temperatureC} &deg;C <span className="slash">/</span> {temperatureF} &deg;F</div>    
             <div>
               <img className="weather-icon" src={`http://openweathermap.org/img/w/${icon}.png`} alt="weather icon"/>
-            </div>
-            
-    
+            </div>    
             <div className="weather-item">
               <span>sunrise: {sunrise}</span>
             </div>
-    
             <div className="weather-item">
               <span>sunset: {sunset}</span>
             </div>
           </div>
-                  
-
         </div>
       );      
     }
