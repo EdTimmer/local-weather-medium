@@ -16,44 +16,19 @@ body {
   display: flex;
   flex-direction: column;
   text-align: center;
-  /* justify-content: center; */
-  background-image: url('./images/resort.jpg');
-  /* background-image: linear-gradient(to bottom right, blue, yellow); */
-  /* background-color: lightgreen; */
+  background-image: url('./images/nyc.jpg');
   height: 100vh;
 }
-
-
-/* .header-box {
-  display: flex;
-  text-align: center;
-  justify-content: center;
-  margin-left: auto;
-  margin-right: auto;
-  margin-top: 3rem;
-  width: 60rem;
-  height: 6rem;
-  background-color: blue;
-  border: 2px solid orange;
-} */
-
-/* .header {
-  font-family: 'Bonbon', sans-serif;
-  font-size: 5rem;
-  color: orange;
-} */
 
 .weather-box {
   display: flex;
   flex-direction: column;
   text-align: center;
   justify-content: center;
-  /* background-color: lightseagreen; */
-  background-color:	#26b9c8;
+  background-color: #39CCCC;
   width: 20rem;
-  height: 25rem;
-  margin: 5rem auto 5rem auto;
-  /* border: 2px solid red; */
+  height: 23rem;
+  margin: 10rem auto 0 auto;
   border-radius: 4rem;
 }
 
@@ -65,12 +40,6 @@ body {
 
 .weather-icon {
   max-width: 50px;
-}
-
-.sun-icon {
-  width: 24px;
-  height: 24px;
-  margin: 0 1rem;
 }
 
 .slash {
